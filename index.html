@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <script
+    crossorigin
+    src="https://unpkg.com/react@16/umd/react.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"
+  ></script>
+  <link rel="stylesheet" href="css/style.css" />
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      const Task = ({ text, completed }) => {
+        const Click = () => {
+          if (completed) {
+            console.log("Task" + " '" + text + "' " + " is done");
+          } else {
+            console.log("Task" + " '" + text + "' " + " is  not done");
+          }
+        };
+        return (
+          <li
+            className="list-item"
+            style={{
+              textDecoration: completed ? "line-through" : null
+            }}
+            onClick={Click}
+          >
+            <input type="checkbox" checked={completed} />
+            {text}
+          </li>
+        );
+      };
+
+      const element = (
+        <div className="container">
+          <div className="list">
+            <h2 className="list-name"> My List </h2>
+            <input className="list-button" placeholder="New task" />
+            <ul className="list-group">
+              <Task completed text="Create HTML page" />
+              <Task completed text="Make it nice" />
+              <Task text="It must be interactive" />
+              <Task text="Show it for everybody" />
+            </ul>
+          </div>
+        </div>
+      );
+
+      ReactDOM.render(element, document.getElementById("root"));
+    </script>
+  </body>
+</html>
